@@ -1,13 +1,14 @@
-FROM openjdk:8-jre-alpine
+FROM arm64v8/openjdk:11
 
-ARG VERSION=0.15.8
+ARG ELASTICMQ_VERSION=1.1.0
 
-EXPOSE 9324
-
-ADD https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${VERSION}.jar /elasticmq-server.jar
+RUN wget -q -O /elasticmq-server.jar https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${ELASTICMQ_VERSION}.jar
 
 COPY elasticmq.conf /etc/elasticmq/elasticmq.conf
 
-VOLUME /etc/elasticmq
+EXPOSE 9324
 
-CMD ["java", "-Djava.net.preferIPv4Stack=true", "-Dconfig.file=/etc/elasticmq/elasticmq.conf", "-jar", "/elasticmq-server.jar"]
+VOLUME /etc/elasticmq
+ENV ELASTICMQ_OPTS="-Dconfig.file=/etc/elasticmq/elasticmq.conf"
+
+CMD ["java", "-Djava.net.preferIPv4Stack=true", "-Dconfig.file=/etc/elasticmq/elasticmq.conf", "-Dlogback.configurationFile=/etc/elasticmq/logback.xml", "-jar", "/elasticmq-server.jar"]
