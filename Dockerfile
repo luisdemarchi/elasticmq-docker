@@ -1,6 +1,6 @@
-FROM arm64v8/openjdk:11
+FROM arm64v8/openjdk:18
 
-ARG ELASTICMQ_VERSION=1.1.0
+ARG ELASTICMQ_VERSION=1.3.1
 
 RUN wget -q -O /elasticmq-server.jar https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${ELASTICMQ_VERSION}.jar
 
