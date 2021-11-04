@@ -4,7 +4,7 @@ Docker image for [ElasticMQ](https://github.com/adamw/elasticmq) (fake SQS)
 
 Run it with
 ```
-docker run -p 9324:9324 luisdemarchi/elasticmq-m1
+docker run -itd -p 9324:9324 luisdemarchi/elasticmq-m1
 ```
 
 Custom config `elasticmq.conf` can be mounted to `/etc/elasticmq/`:
