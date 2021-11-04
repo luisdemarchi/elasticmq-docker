@@ -1,4 +1,4 @@
-FROM arm64v8/openjdk:18
+FROM arm64v8/openjdk:11
 
 ARG ELASTICMQ_VERSION=1.3.1
 
