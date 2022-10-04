@@ -1,8 +1,9 @@
-FROM arm64v8/openjdk:11
+FROM arm64v8/openjdk:20
 
-ARG ELASTICMQ_VERSION=1.3.1
+ARG ELASTICMQ_VERSION=1.3.11
 
-RUN wget -q -O /elasticmq-server.jar https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${ELASTICMQ_VERSION}.jar
+RUN curl -s -o /elasticmq-server.jar https://s3-eu-west-1.amazonaws.com/softwaremill-public/elasticmq-server-${ELASTICMQ_VERSION}.jar && \
+    chmod +x /elasticmq-server.jar 
 
 COPY elasticmq.conf /etc/elasticmq/elasticmq.conf
 
